@@ -1,0 +1,279 @@
+{% extends 'main/base.html' %}
+
+{% load static %}
+{% block title %}Логин{% endblock %}
+
+{% block content %}
+{% if request.user.is_authenticated %}
+    <div class="logo">
+        <a href="/">
+            <img src="{% static 'img/icon.png' %}" alt="IТС">
+        </a>
+    </div>
+    <div class="back"><a href="/">< Назад</a></div>
+    <div id="rectangle"></div>
+    <div class="loginicon">
+        <img src="{% static 'img/loginicon.png' %}" alt="">
+    </div>
+    <div class="textlogin">
+        <h2>Имя</h2>
+        <h2>Почта</h2>
+    </div>
+    <div class="infologin">
+        <h2>{{ user.first_name }}</h2>
+        <h2>{{ user.email }}</h2>
+    </div>
+    <center><button class="quit" onclick="window.location.href = '{% url "logout" %}';">Выход</button></center>
+<style>
+    #rectangle {
+        position: absolute;
+        left: 22.5%;
+        top: 25%;
+        width: 55%;
+        height: 50%;
+        background: white;
+    }
+    .quit {
+        position: absolute;
+        left: 38.5%;
+        top: 58.7%;
+        width: 23%;
+        background-color: #4CAF50; /* Green */
+        border: none;
+        background-color: #8a00ff;
+        color: white;
+        padding: 15px 50px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        border-radius: 50px;
+        -webkit-transition-duration: 0.4s; /* Safari */
+        transition-duration: 0.4s;
+        cursor: pointer;
+        overflow: hidden;
+    }
+    .quit:hover {
+        background-color: #9037de;
+        color: white;
+    }
+    .textlogin {
+        position: absolute;
+        top: 33.7%;
+        left: 35%;
+    }
+    .infologin {
+        position: absolute;
+        top: 33.7%;
+        left: 55%;
+    }
+    .loginicon img{
+        position: absolute;
+        top: 28.1%;
+        left: 23%;
+    }
+        .back {
+            position: absolute;
+            right: 7.7%;
+            top: 7%;
+        }
+        .back a{
+            text-decoration: none;
+            font-size: 27px;
+            color: white;
+        }
+        .login-text {
+            font-size: 170%;
+            margin-top: 15%;
+            color: white;
+        }
+        .login {
+            width: 23%;
+            background-color: #4CAF50; /* Green */
+            border: none;
+            background-color: #8a00ff;
+            color: white;
+            padding: 15px 50px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            border-radius: 50px;
+            -webkit-transition-duration: 0.4s; /* Safari */
+            transition-duration: 0.4s;
+            cursor: pointer;
+            overflow: hidden;
+        }
+        .login:hover {
+            background-color: #9037de;
+            color: white;
+        }
+         .myfield{
+            border:1px solid #ccc;
+            border-radius:5px;
+            height:25px;
+            width:200px;
+            margin: 10px 10px 10px 0;
+        }
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+        /* text-field */
+        .myfield {
+            display: block;
+            width: 40%;
+            height: calc(2.25rem + 2px);
+            padding: 0.375rem 0.75rem;
+            font-family: inherit;
+            font-size: 1rem;
+            font-weight: 400;
+            margin-top: 2%;
+            line-height: 1.5;
+            color: #212529;
+            background-color: #fff;
+            background-clip: padding-box;
+            border: 1px solid #bdbdbd;
+            border-radius: 50px;
+            transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+        }
+
+        .myfield::placeholder {
+        color: #212529;
+        opacity: 0.4;
+        }
+
+        .myfield:focus {
+            color: #212529;
+            background-color: #fff;
+            border-color: #bdbdbd;
+            outline: 0;
+            box-shadow: 0 0 0 0.2rem rgba(158, 158, 158, 0.25);
+        }
+        body{
+            background-image: url({% static 'img/main.png' %});
+            background-size: 100%;
+        }
+        .logo img {
+        position: absolute;
+        left: 5%;
+        top: 4.03%;
+        width: 15%;
+    }
+    </style>
+{% else %}
+    <div class="logo">
+        <a href="/">
+            <img src="{% static 'img/icon.png' %}" alt="IТС">
+        </a>
+    </div>
+    <div class="back"><a href="/">< Назад</a></div>
+    <div class="login-text">
+        <center><font face="Microsoft Sans Serif">Вход на сайт</font></center>
+    </div>
+    <form method="post">
+        {% csrf_token %}
+        <div>
+            {% for field in form %}
+            <div>
+                <center><p>{{field}}</p></center>
+            </div>
+            {% endfor %}
+        </div>
+        <br>
+        <center><button class="login" type="submit">Войти</button></center>
+    </form>
+    <style>
+        .back {
+            position: absolute;
+            right: 7.7%;
+            top: 7%;
+        }
+        .back a{
+            text-decoration: none;
+            font-size: 27px;
+            color: white;
+        }
+        .login-text {
+            font-size: 170%;
+            margin-top: 15%;
+            color: white;
+        }
+        .login {
+            width: 23%;
+            background-color: #4CAF50; /* Green */
+            border: none;
+            background-color: #8a00ff;
+            color: white;
+            padding: 15px 50px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            border-radius: 50px;
+            -webkit-transition-duration: 0.4s; /* Safari */
+            transition-duration: 0.4s;
+            cursor: pointer;
+            overflow: hidden;
+        }
+        .login:hover {
+            background-color: #9037de;
+            color: white;
+        }
+         .myfield{
+            border:1px solid #ccc;
+            border-radius:5px;
+            height:25px;
+            width:200px;
+            margin: 10px 10px 10px 0;
+        }
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+        /* text-field */
+        .myfield {
+            display: block;
+            width: 40%;
+            height: calc(2.25rem + 2px);
+            padding: 0.375rem 0.75rem;
+            font-family: inherit;
+            font-size: 1rem;
+            font-weight: 400;
+            margin-top: 2%;
+            line-height: 1.5;
+            color: #212529;
+            background-color: #fff;
+            background-clip: padding-box;
+            border: 1px solid #bdbdbd;
+            border-radius: 50px;
+            transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+        }
+
+        .myfield::placeholder {
+        color: #212529;
+        opacity: 0.4;
+        }
+
+        .myfield:focus {
+            color: #212529;
+            background-color: #fff;
+            border-color: #bdbdbd;
+            outline: 0;
+            box-shadow: 0 0 0 0.2rem rgba(158, 158, 158, 0.25);
+        }
+        body{
+            background-image: url({% static 'img/main.png' %});
+            background-size: 100%;
+        }
+        .logo img {
+        position: absolute;
+        left: 5%;
+        top: 4.03%;
+        width: 15%;
+    }
+    </style>
+{% endif %}
+{% endblock %}

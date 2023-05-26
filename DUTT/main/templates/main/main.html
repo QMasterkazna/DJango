@@ -1,0 +1,125 @@
+{% extends 'main/base.html' %}
+
+{% load static %}
+
+{% block title %}Главная{% endblock %}
+
+{% block content %}
+{% if request.user.is_authenticated %}
+<div class="logo">
+    <a href="/">
+    <img src="{% static 'img/icon.png' %}" alt="IТС">
+    </a>
+</div>
+<div class="loginicon">
+    <a href="{% url "login" %}">
+    <img src="{% static 'img/loginicon.png' %}" alt="">
+    </a>
+</div>
+<div class="text">
+    <center><h2>Приветствуем вас на образовательной платформе ITC!</h2></center>
+    <h2><p>Здесь вам даётся возможность изучить язык программирования python с нуля. Наше преимущество перед другими платформами заключается в том, что наш курс абсолютно бесплатный и проверен специалистами. Изучайте язык с удовольствием, удачи!</p></h2>
+</div>
+<div class="first">
+    <center><button class="next" onclick="window.location.href = '/main/first_lesson/';">Первый урок ></button></center></div>
+<style>
+.next {
+    width: 23%;
+        background-color: blue; /* Green */
+        border: none;
+        color: white;
+        padding: 15px 50px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        cursor: pointer;
+        overflow: hidden;
+}
+.next:hover {
+        background-color: #2f35eb;
+        color: white;
+    }
+.loginicon img{
+        position: absolute;
+        top: 3.5%;
+        right: 5%;
+        width: 8%;
+    }
+    .logo img {
+        position: absolute;
+        left: 5%;
+        top: 4.03%;
+        width: 15%;
+    }
+    body{
+        background-image: url({% static 'img/main.png' %});
+        background-size: 100%;
+    }
+    .text{
+    color: white;
+        margin-top: 15%;
+        margin-left: auto;
+        margin-right: auto;
+        width: 65%;
+    }
+    p {text-align:justify; text-indent:30px; }
+</style>
+{% else %}
+<div class="logo">
+    <a href="/">
+    <img src="{% static 'img/icon.png' %}" alt="IТС">
+    </a>
+</div>
+<div class="text">
+    <center><h1><font face="Microsoft Sans Serif">Хочешь стать программистом?</font></h1></center>
+    <br>
+    <center><font face="Microsoft Sans Serif">Сделай шаг в будущее уже сейчас!</font></center>
+    <br><br><br>
+    <center><button class="reg" onclick="window.location.href = '/main/register/';">НАЧАТЬ</button></center>
+    <br>
+    <center><a href = "/main/login/"><font face="Microsoft Sans Serif">Уже есть аккаунт</font></a></center>
+</div>
+<style>
+    a {
+        text-decoration: none;
+        color: #8a00ff;
+    }
+    .text {
+        color: white;
+        margin-top: 15%;
+    }
+    .reg {
+        width: 23%;
+        background-color: #4CAF50; /* Green */
+        border: none;
+        background-color: #8a00ff;
+        color: white;
+        padding: 15px 50px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        border-radius: 50px;
+        -webkit-transition-duration: 0.4s; /* Safari */
+        transition-duration: 0.4s;
+        cursor: pointer;
+        overflow: hidden;
+    }
+    .reg:hover {
+        background-color: #9037de;
+        color: white;
+    }
+    .logo img {
+        position: absolute;
+        left: 5%;
+        top: 4.03%;
+        width: 15%;
+    }
+    body{
+        background-image: url({% static 'img/main.png' %});
+        background-size: 100%;
+    }
+</style>
+{% endif %}
+{% endblock %}
